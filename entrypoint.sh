@@ -17,6 +17,7 @@ TARGET_MODEL="${OLLAMA_MODEL:-llama3.2:3b}"
 echo "[INFO] Ensuring model '${TARGET_MODEL}' is downloaded..."
 ollama pull "$TARGET_MODEL"
 
-# Launch Streamlit frontend
-echo "[INFO] Launching VoiceNote Buddy Streamlit interface..."
-exec streamlit run app.py --server.port=8501 --server.address=0.0.0.0
+# Determine port (7860 for Hugging Face Spaces, 8501 for standard Streamlit)
+APP_PORT="${PORT:-7860}"
+echo "[INFO] Launching VoiceNote Buddy Streamlit interface on port ${APP_PORT}..."
+exec streamlit run app.py --server.port="${APP_PORT}" --server.address=0.0.0.0

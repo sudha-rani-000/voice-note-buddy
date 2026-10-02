@@ -1,3 +1,13 @@
+---
+title: VoiceNote Buddy
+emoji: 🎙️
+colorFrom: indigo
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # VoiceNote Buddy
 
 > **Turn messy voice notes into organized actions.**
