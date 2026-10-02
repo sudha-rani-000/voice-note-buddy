@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  voicenote-buddy:
+    build: .
+    container_name: voicenote-buddy
+    ports:
+      - "8501:8501"
+    environment:
+      - OLLAMA_MODEL=llama3.2:3b
+      - WHISPER_MODEL=base
+    volumes:
+      # Persist SQLite database across container restarts
+      - ./data:/app/data
+      # Persist downloaded Ollama models across container rebuilds
+      - ollama_cache:/root/.ollama
+      # Persist Whisper model weights
+      - whisper_cache:/root/.cache
+    restart: unless-stopped
+
+volumes:
+  ollama_cache:
+  whisper_cache:
